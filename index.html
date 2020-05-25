@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 检测数据类型的两种方法
+// typeof(xxx)
+// Object.prototype.toString.call(xxx)
+console.log(typeof '') // string
+console.log(typeof 1) // number
+console.log(Object.prototype.toString.call({})) // [object object]
+console.log(Object.prototype.toString.call([])) // [object Array]
+console.log('分割符---------------------------------------------------------------------------')
+
+// 显示转换
+// 转换为数字 
+var num = '1.6';
+let a = Number(num)  // 转换成为数字
+let b = parseInt(num) // 转换为整形， 直接舍弃小数点部分
+let c = parseFloat(num) // 转换为浮点型
+var alphabetStr = 'abc'
+let d = Number(alphabetStr)
+console.log(typeof a)
+console.log(b)
+console.log(c)
+console.log(d)
+console.log('分割符---------------------------------------------------------------------------')
+
+// 转换成为字符串
+let material = 2.5
+let f = material.toString();
+let g = String(2.44)
+console.log(typeof f)
+console.log(typeof g)
+console.log('分割符---------------------------------------------------------------------------')
+
+// 转换为布尔值
+let h = Boolean(0)
+console.log(h)
+console.log('分割符---------------------------------------------------------------------------')
+
+// 隐式转换
+let j = 1.2 + ""; // 字符串拼接
+console.log(j)
+console.log('分割符---------------------------------------------------------------------------')
+
+// 字符串常用方法
+let str = "hello world"
+console.log(str.indexOf('wo')) // 返回首次出现的位置，下标
+console.log(str.lastIndexOf('o')) // 从后往前面找， 返回的都是索引值(正数)，未找到返回-1
+console.log(str.indexOf('he', 2)) // 可以指定检索的起始位置
+console.log(str.search('ld')) // search的作用和indexof相同， 但不能指定检索的起始位置
+console.log(str.slice(0, 8)) // 截取从索引值开始到索引值结束的内容(能使用负数索引)
+console.log(str.substring(0, 5)) // 不能使用负数索引
+console.log(str.substr(0, 10)) // 第二个参数是提前长度
+console.log(str.replace('o', 'w')) //默认只替换第一个匹配到的字符，(区分大小写的)， 并且返回新的字符串
+console.log(str.replace(/w/i, 'He')) // 正则表达式， 正则表达式/i是不区分大小写的意思，并且返回新的字符串
+console.log(str.replace(/o/g, 'He')) // 正则表达式， /g匹配所有，并且返回新的字符串
+console.log(str.replace(/o/ig, 'He')) // 正则表达式， /i,/g的功能一起使用，并且返回新的字符串
+console.log(str.concat('123', 'javascript')) // 连接一个或者多个字符串, 以新串的形式返回， 不改变原串
+console.log(str.trim()) //  去除字符串两端的空白格
+console.log(str.toUpperCase()) //全部转换为大写
+console.log(str.toLowerCase()) //全部转换为小写
+console.log(str.charAt(10)) // 返回指定位置上的字符
+console.log('分割符---------------------------------------------------------------------------')
+
+
+// 数字类型常用方法
+let k = 19.588;
+console.log(k.toFixed(2)) // 保留多少位小数点， 返回字符串
+console.log(k.toPrecision(3)) // 保留多少位小数点， 返回字符串
+console.log('分割符---------------------------------------------------------------------------')
+
+
+// 数组的方法
+let LArr = [1,2,3,4,5,6,7];
+console.log(LArr[0]); // 获取下标为0的值
+console.log(LArr.shift()) //删除并返回数组的第一个元素
+console.log(LArr)
+console.log(LArr.pop()) //删除并返回数组的最后一个元素
+console.log(LArr)
+console.log(LArr.unshift('123')) //在数组开头 （第一个元素之前） 添加一个元素， 返回添加后的数组长度
+console.log(LArr)
+let arr1 = [10,11,12];
+let arr2 = [20,21];
+let newArr3 = arr1.concat(arr1, arr2); // 不改变原数组， 以新数组的形式返回\
+console.log(newArr3)
+console.log(arr1.join("_")) // 连接数组的元素， 返回字符串 (可指定连接符，缺省时的默认为逗号)
+let strQ = "c c++ java node element"
+console.log(strQ.split()) // 把整个字符串作为一个元素，返回数组
+console.log(strQ.split(" ")) //指定切割符 把整个字符串作为一个元素，返回数组
+console.log(strQ.split(" ", 3)) //指定数组中保留的元素的个数
+console.log(LArr.reverse()) // 数组反序，原数组改变
+console.log(LArr.sort()) ////默认按ASCII码值升序排列，逐字符比较
+let sortArr = LArr.sort(function(a, b) {
+    return b - a
+})
+console.log(sortArr) // 按数值大小降序/.升序排列
+/*
+  获取数组片段，以新数组形式返回，原数组不变
+  [start,end)，2个参数均为数组下标，均可以使用负数，-1表示最后一个元素，-2表示倒数第二个元素
+  start必需，end可选，缺省end默认到末尾
+  */
+console.log(LArr.slice(0, 2))
+/*
+  参数：start，deleteCount,ele...
+  从1（下标）开始，删除2个元素，并把后面的参数（可选，个数可变）作为数组元素填充到删除之处
+  */
+ console.log(LArr.splice(0,1));
+ /*
+  返回指定元素在数组中第一次出现的位置（下标），如果数组中没有该元素，返回-1；如果有多个匹配，只返回第一个
+  第二个参数指定检索开始位置，可选，缺省时默认为0（从第一个元素开始）
+  */
+ console.log(LArr.indexOf(2));
+ console.log('分割符---------------------------------------------------------------------------')
+
+ // 数组迭代 
+ let arr3 = [455,40,90,16,25];
+ // 使用for循环迭代数组
+ for(let i = 0; i < arr3.length; i++) {
+     console.log(arr3[i])
+ }
+
+//  //  使用forEach迭代数组。参数依次表示元素、索引、数组本身
+//  arr3.forEach(function()) {
+//     console.log();
+//  }
+console.log('分割符---------------------------------------------------------------------------')
+
+//对象的创建
+let obj1 = {name: 'chy', age: 23};
+console.log(obj1)
+// 使用构造函数创建
+let obj2 = new Object();
+console.log(obj2)
+obj1.name = "zhangshan"
+console.log(obj1)
+/*
+ 对象的key只能是字符串，引不引都可以，都认为是字符串。
+ delete可以删除对象的属性，但删除不了变量，删除变量是把变量赋值为undefined
+*/
+delete(obj1.name)
+console.log(obj1)
+console.log('分割符---------------------------------------------------------------------------')
+let obj3 = {"name": "cthy", "aget": 20};
+
+// 使用for in 遍历对象的键值对
+for (item in obj3) {
+    console.log(item); // item是key
+    console.log(obj3[item]); // 获取对应的value，user.item会认为key是字符串”item“， 只能用[]
+}
+console.log('分割符---------------------------------------------------------------------------')
+
+// 工厂函数
+function createUser(name,age){
+    // 创建对象
+    let user =new Object();
+    // 添加成员变量
+    user.name=name;
+    user.age=age;
+    // 添加成员方法
+    user.getName=function(){
+      // return user.name;
+      return this.name;
+    }
+    user.getAge=function(){
+      // return user.age;
+      return this.age;
+    }
+    user.getInfo=function(){
+      // return user.name+"  "+user.age;
+      return this.name+"  "+this.age;
+    }
+    // 返回对象
+    return user;
+  }
+let factoryArr = createUser('kobe', 24);
+
+// 访问成员对象
+console.log(factoryArr.name);
+console.log(factoryArr.getInfo())
+
+    </script>
+</body>
+</html>
